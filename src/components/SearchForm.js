@@ -23,7 +23,16 @@ export default function SearchForm(props) {
         console.log('This is results ', results)
         console.log('This is searchTerm inside of "results" function ', searchTerm)
     }, [searchTerm]);
-  
+
+    // (item) => item.results   <--- implicit return, yay!!!
+    // const stuff = (item) => {  <-- these curly braces {} break the implicit return, so you need to EXPLICITLY return something
+    //   setThing(item)
+    //   setOtherThing(item+4)
+    //   return item + 10  //<---- what the function gives back
+    // }
+
+    // const stuff2 = thing.forEach(whatever)
+    // const stuff3 = thing.map()
 
   const handleChange = e => {
     setSearchTerm(e.target.value)
@@ -48,8 +57,8 @@ export default function SearchForm(props) {
       </SearchBarDiv>
      <div>
        <ul>
-         {searchResults.map(name => (  //WE NEED TO PASS IN THE API TO NAME
-           <li key={name.name}>{name.name}</li>
+         {searchResults.map(name => (
+           <li key={name.name}>Name: {name.name} | Species: {name.species} | Dead of Alive: {name.status}</li>
          ))}
        </ul>
      </div>
