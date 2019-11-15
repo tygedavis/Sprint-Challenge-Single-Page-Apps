@@ -1,9 +1,20 @@
 import React, { useEffect, useState } from "react";
-import axios from 'axios'
+import axios from 'axios';
+
+import CharacterCard from './CharacterCard';
+import styled from 'styled-components'
+
+const CharacterDiv = styled.div`
+    margin: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+`;
 
 export default function CharacterList() {
   // TODO: Add useState to track data from useEffect
-  const [character, setCharacter] = useState();
+  const [character, setCharacter] = useState([]);
 
   useEffect(() => {
     // TODO: Add API Request here - must run in `useEffect`
@@ -22,11 +33,10 @@ export default function CharacterList() {
   console.log('This is character ', character)
 
   return (
-    <section className="character-list">
-      <h2>TODO: `array.map()` over your state here!</h2>
-      {/* {character.map((person, index) => {
-
-      })} */}
-    </section>
+    <CharacterDiv>
+      {character.map((person, index) => { //For every character we want to make a new card.
+        return <CharacterCard key={index} name={person.name} status={person.status} species={person.species}/>
+      })}
+    </CharacterDiv>
   );
 }
