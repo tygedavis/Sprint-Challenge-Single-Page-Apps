@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from 'axios';
 
 import CharacterCard from './CharacterCard';
+import SearchForm from './SearchForm'
 import styled from 'styled-components'
 
 const CharacterDiv = styled.div`
@@ -22,7 +23,7 @@ export default function CharacterList() {
 
     axios.get('https://rickandmortyapi.com/api/character/')//This grabs the data
       .then(res => {
-        console.log("This is console logging 'res' from axios ", res.data); //Gives back two arrays: 'Info' (page count) and 'results' (information on each character)
+        //console.log("This is console logging 'res' from axios ", res.data); //Gives back two arrays: 'Info' (page count) and 'results' (information on each character)
         setCharacter(res.data.results); //This is the information of each charcter
       })
       .catch(err => {
@@ -30,13 +31,17 @@ export default function CharacterList() {
       })
   }, []);
 
-  console.log('This is character ', character)
+  //console.log('This is character ', character)
 
   return (
-    <CharacterDiv>
-      {character.map((person, index) => { //For every character we want to make a new card.
-        return <CharacterCard key={index} name={person.name} status={person.status} species={person.species}/>
-      })}
-    </CharacterDiv>
+    <>
+      <SearchForm character={character}/>
+    
+      <CharacterDiv>
+        {character.map((person, index) => { //For every character we want to make a new card.
+          return <CharacterCard key={index} name={person.name} status={person.status} species={person.species}/>
+        })}
+      </CharacterDiv>
+    </>
   );
 }

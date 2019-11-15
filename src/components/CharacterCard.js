@@ -15,7 +15,7 @@ export default function CharacterCard(props) {
     <CharacterDiv>
       <h2>Name: {props.name}</h2>
       <h3>Species: {props.species}</h3>
-      <p>Is {props.status}</p>
+      <p>Dead or Alive? {props.status}</p>
     </CharacterDiv>
   );
 }
