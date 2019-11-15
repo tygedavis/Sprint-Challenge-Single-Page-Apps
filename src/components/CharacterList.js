@@ -11,16 +11,22 @@ export default function CharacterList() {
 
     axios.get('https://rickandmortyapi.com/api/character/')//This grabs the data
       .then(res => {
-        console.log("This is console logging 'res' from axios ", res.data);
+        console.log("This is console logging 'res' from axios ", res.data); //Gives back two arrays: 'Info' (page count) and 'results' (information on each character)
+        setCharacter(res.data.results); //This is the information of each charcter
       })
       .catch(err => {
         console.log('There was an error in the axios call ', err);
       })
   }, []);
 
+  console.log('This is character ', character)
+
   return (
     <section className="character-list">
       <h2>TODO: `array.map()` over your state here!</h2>
+      {/* {character.map((person, index) => {
+
+      })} */}
     </section>
   );
 }
